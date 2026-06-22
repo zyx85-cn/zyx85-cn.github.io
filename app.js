@@ -18,7 +18,7 @@ function fetchQuotes() {
   return new Promise((resolve, reject) => {
     const codes = STOCKS.map(s => (s.market ? 'sh' : 'sz') + s.code).join(',');
     const s = document.createElement('script');
-    s.src = 'http://qt.gtimg.cn/q=' + codes;
+    s.src = 'https://qt.gtimg.cn/q=' + codes;
     const timer = setTimeout(() => { s.onerror=null;s.onload=null;s.parentNode&&s.parentNode.removeChild(s);reject('请求超时'); }, 10000);
     s.onload = () => {
       clearTimeout(timer);
