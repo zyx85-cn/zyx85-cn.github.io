@@ -24,6 +24,9 @@ body {
 .cd { font-size: 12px; color: #999; }
 .row { display: flex; align-items: baseline; justify-content: space-between; }
 .prc { font-size: 26px; font-weight: 700; color: #333; }
+.chg { font-size: 14px; font-weight: 600; margin-left: 4px; }
+.chg.up   { color: #e53935; }
+.chg.down { color: #43A047; }
 .divr { font-size: 24px; font-weight: 700; text-align: right; }
 .divr .lbl { display: block; font-size: 12px; font-weight: 400; margin-top: 2px; color: #999; }
 .divr.high { color: #e53935; }

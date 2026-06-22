@@ -27,8 +27,8 @@ function fetchQuotes() {
       for (const x of STOCKS) {
         const raw = window['v_' + (x.market ? 'sh' : 'sz') + x.code];
         try { delete window['v_' + (x.market ? 'sh' : 'sz') + x.code]; } catch(e) {}
-        if (raw) { const p = raw.split('~'); r.push({code:x.code, name:p[1]||x.name, price:+p[3]||0 }); }
-        else r.push({code:x.code, name:x.name, price:0});
+        if (raw) { const p = raw.split('~'); r.push({code:x.code, name:p[1]||x.name, price:+p[3]||0, yc:+p[4]||0 }); }
+        else r.push({code:x.code, name:x.name, price:0, yc:0});
       }
       resolve(r);
     };
@@ -44,10 +44,13 @@ function render(quotes) {
   for (const q of quotes) {
     const cfg = STOCKS.find(x => x.code === q.code);
     if (!cfg) continue;
-    const price = q.price, div = cfg.dividend || 0, ded = cfg.undDist || 0;
+    const price = q.price, yc = q.yc, div = cfg.dividend || 0, ded = cfg.undDist || 0;
     const base = price - ded, rate = base > 0 ? div / base * 100 : 0;
     const decimals = cfg.etf ? 3 : 2;
     const priceTxt = price > 0 ? price.toFixed(decimals) : '--';
+    const chgPct = price > 0 && yc > 0 ? (price - yc) / yc * 100 : 0;
+    const chgTxt = chgPct !== 0 ? (chgPct > 0 ? '+' : '') + chgPct.toFixed(2) + '%' : '';
+    const chgCls = chgPct > 0 ? 'up' : chgPct < 0 ? 'down' : '';
     const rateTxt = div > 0 && base > 0 ? rate.toFixed(2) : '0.00';
     const cls = div > 0 && base > 0 ? (rate >= 5 ? 'high' : rate >= 3 ? 'mid' : 'low') : 'zero';
     const note = ded > 0 ? `<div class="note">（基准价已扣未分配股息 ${ded.toFixed(3)} 元）</div>` : '';
@@ -55,7 +58,7 @@ function render(quotes) {
       `<div class="card">
         <div class="hdr"><span class="nm">${cfg.name}</span><span class="cd">${q.code}</span></div>
         <div class="row">
-          <div class="prc">¥${priceTxt}</div>
+          <div class="prc">¥${priceTxt}<span class="chg ${chgCls}"> ${chgTxt}</span></div>
           <div class="divr ${cls}">${rateTxt}%<span class="lbl">分红 ${div>0?div.toFixed(3):'0'} 元/股</span></div>
         </div>
         ${note}
