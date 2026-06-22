@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#4CAF50">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.svg" sizes="192x192" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icon-192.svg">
+<link rel="stylesheet" href="./style.css">
+<title>股息率查看器</title>
+</head>
+<body>
+
+<div class="header">
+  <h1>📈 股息率查看器</h1>
+  <div class="sub">自选股实时价格 · 股息率</div>
+</div>
+
+<div class="list" id="list">
+  <div class="loading"><div class="spin"></div><div>加载中…</div></div>
+</div>
+
+<div class="footer">
+  <span id="time">加载中…</span>
+  <button class="btn" id="btn">↻ 刷新</button>
+</div>
+
+<script src="./app.js"></script>
+</body>
+</html>
