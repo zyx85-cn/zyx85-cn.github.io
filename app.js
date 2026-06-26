@@ -7,8 +7,8 @@
    etf      - true=价格保留3位小数，false=保留2位
    =============================================================== */
 const STOCKS = [
-  { code: '601919', market: 1, name: '中远海控',   dividend: 0.679,  undDist: 0.44, etf: false },
-  { code: '600938', market: 1, name: '中国海油',   dividend: 1.5148, undDist: 0.486, etf: false },
+  { code: '601919', market: 1, name: '中远海控',   dividend: 0.679,  undDist: 0, etf: false },
+  { code: '600938', market: 1, name: '中国海油',   dividend: 1.231, undDist: 0.486, etf: false },
   { code: '563020', market: 1, name: '红利低波ETF', dividend: 0.048,  undDist: 0,    etf: true },
   { code: '159307', market: 0, name: '红利低波100ETF',dividend:0.0506,undDist:0,    etf: true },
 ];
