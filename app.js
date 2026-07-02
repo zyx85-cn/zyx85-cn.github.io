@@ -49,7 +49,7 @@ function render(quotes) {
     const decimals = cfg.etf ? 3 : 2;
     const priceTxt = price > 0 ? price.toFixed(decimals) : '--';
     const chgPct = price > 0 && yc > 0 ? (price - yc) / yc * 100 : 0;
-    const chgTxt = chgPct !== 0 ? (chgPct > 0 ? '+' : '') + chgPct.toFixed(2) + '%' : '';
+    const chgTxt = (chgPct > 0 ? '+' : '') + chgPct.toFixed(2) + '%';
     const chgCls = chgPct > 0 ? 'up' : chgPct < 0 ? 'down' : '';
     const rateTxt = div > 0 && base > 0 ? rate.toFixed(2) : '0.00';
     const cls = div > 0 && base > 0 ? (rate >= 5 ? 'high' : rate >= 3 ? 'mid' : 'low') : 'zero';
